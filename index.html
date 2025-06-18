@@ -89,12 +89,12 @@
                 <div id="step-type" class="step active">
                     <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-stone-800">What are you looking for today?</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-in">
-                        <div class="option-card border-2 bg-white/50 border-gray-200 rounded-2xl p-6 text-center cursor-pointer" onclick="selectOption('type', 'Custom Cake', 20.00)">
+                        <div class="option-card border-2 bg-white/50 border-gray-200 rounded-2xl p-6 text-center cursor-pointer" onclick="selectOption(this, 'type', 'Custom Cake', 20.00)">
                             <div class="text-6xl mb-3">🎂</div>
                             <h3 class="text-xl font-semibold text-stone-700">Custom Cake</h3>
                             <p class="text-sm text-gray-600">Multi-tiered or single-tiered cakes for any occasion.</p>
                         </div>
-                        <div class="option-card border-2 bg-white/50 border-gray-200 rounded-2xl p-6 text-center cursor-pointer" onclick="selectOption('type', 'Cupcakes', 4.00)">
+                        <div class="option-card border-2 bg-white/50 border-gray-200 rounded-2xl p-6 text-center cursor-pointer" onclick="selectOption(this, 'type', 'Cupcakes', 4.00)">
                              <div class="text-6xl mb-3">🧁</div>
                             <h3 class="text-xl font-semibold text-stone-700">Cupcakes</h3>
                             <p class="text-sm text-gray-600">Delicious batches of custom cupcakes.</p>
@@ -106,10 +106,10 @@
                 <div id="step-occasion" class="step">
                     <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-stone-800">What's the occasion?</h2>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-in">
-                        <button type="button" onclick="selectOccasion('Birthday')" class="option-card border-2 bg-white/50 p-4 rounded-xl">Birthday</button>
-                        <button type="button" onclick="selectOccasion('Wedding')" class="option-card border-2 bg-white/50 p-4 rounded-xl">Wedding</button>
-                        <button type="button" onclick="selectOccasion('Anniversary')" class="option-card border-2 bg-white/50 p-4 rounded-xl">Anniversary</button>
-                        <button type="button" onclick="selectOccasion('Baby Shower')" class="option-card border-2 bg-white/50 p-4 rounded-xl">Baby Shower</button>
+                        <button type="button" onclick="selectOccasion(this, 'Birthday')" class="option-card border-2 bg-white/50 p-4 rounded-xl">Birthday</button>
+                        <button type="button" onclick="selectOccasion(this, 'Wedding')" class="option-card border-2 bg-white/50 p-4 rounded-xl">Wedding</button>
+                        <button type="button" onclick="selectOccasion(this, 'Anniversary')" class="option-card border-2 bg-white/50 p-4 rounded-xl">Anniversary</button>
+                        <button type="button" onclick="selectOccasion(this, 'Baby Shower')" class="option-card border-2 bg-white/50 p-4 rounded-xl">Baby Shower</button>
                     </div>
                      <div class="mt-8 text-center">
                         <button type="button" onclick="goToNextStep()" class="text-sm text-gray-600 hover:text-stone-700">I'll describe it myself</button>
@@ -130,10 +130,10 @@
                 <div id="step-servings" class="step">
                     <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-stone-800">How many people will it serve?</h2>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-in">
-                        <button type="button" onclick="selectOption('servings', 'Up to 8', 25.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Up to 8</button>
-                        <button type="button" onclick="selectOption('servings', 'Up to 25', 55.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Up to 25</button>
-                        <button type="button" onclick="selectOption('servings', 'Up to 40', 80.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Up to 40</button>
-                        <button type="button" onclick="selectOption('servings', 'Up to 50', 100.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Up to 50</button>
+                        <button type="button" onclick="selectOption(this, 'servings', 'Up to 8', 25.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Up to 8</button>
+                        <button type="button" onclick="selectOption(this, 'servings', 'Up to 25', 55.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Up to 25</button>
+                        <button type="button" onclick="selectOption(this, 'servings', 'Up to 40', 80.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Up to 40</button>
+                        <button type="button" onclick="selectOption(this, 'servings', 'Up to 50', 100.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Up to 50</button>
                     </div>
                 </div>
 
@@ -141,8 +141,8 @@
                 <div id="step-tier" class="step">
                     <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-stone-800">Select the number of tiers</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-in">
-                        <button type="button" onclick="selectOption('tier', 'Single-Tier', 0)" class="option-card border-2 bg-white/50 p-6 rounded-2xl">Single-Tier</button>
-                        <button type="button" onclick="selectOption('tier', 'Two-Tier', 40.00)" class="option-card border-2 bg-white/50 p-6 rounded-2xl">Two-Tier</button>
+                        <button type="button" onclick="selectOption(this, 'tier', 'Single-Tier', 0)" class="option-card border-2 bg-white/50 p-6 rounded-2xl">Single-Tier</button>
+                        <button type="button" onclick="selectOption(this, 'tier', 'Two-Tier', 40.00)" class="option-card border-2 bg-white/50 p-6 rounded-2xl">Two-Tier</button>
                     </div>
                 </div>
 
@@ -159,11 +159,11 @@
                 <div id="step-flavour" class="step">
                     <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-stone-800">Choose a flavour</h2>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 stagger-in">
-                        <button type="button" onclick="selectOption('flavour', 'Chocolate', 5.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Chocolate</button>
-                        <button type="button" onclick="selectOption('flavour', 'Vanilla', 0)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Vanilla</button>
-                        <button type="button" onclick="selectOption('flavour', 'Red Velvet', 5.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Red Velvet</button>
-                        <button type="button" onclick="selectOption('flavour', 'Butter Scotch', 7.50)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Butter Scotch</button>
-                        <button type="button" onclick="selectOption('flavour', 'Carrot', 7.50)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Carrot</button>
+                        <button type="button" onclick="selectOption(this, 'flavour', 'Chocolate', 5.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Chocolate</button>
+                        <button type="button" onclick="selectOption(this, 'flavour', 'Vanilla', 0)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Vanilla</button>
+                        <button type="button" onclick="selectOption(this, 'flavour', 'Red Velvet', 5.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Red Velvet</button>
+                        <button type="button" onclick="selectOption(this, 'flavour', 'Butter Scotch', 7.50)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Butter Scotch</button>
+                        <button type="button" onclick="selectOption(this, 'flavour', 'Carrot', 7.50)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Carrot</button>
                     </div>
                 </div>
 
@@ -179,12 +179,12 @@
                         <!-- Filling suggestions will be injected here -->
                     </div>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 stagger-in">
-                         <button type="button" onclick="selectOption('filling', 'Nutella', 10.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Nutella</button>
-                         <button type="button" onclick="selectOption('filling', 'Biscoff', 10.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Biscoff</button>
-                         <button type="button" onclick="selectOption('filling', 'Cream Cheese', 8.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Cream Cheese</button>
-                         <button type="button" onclick="selectOption('filling', 'Salted Caramel', 8.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Salted Caramel</button>
-                         <button type="button" onclick="selectOption('filling', 'Berry Jam', 7.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Berry Jam</button>
-                         <button type="button" onclick="selectOption('filling', 'None', 0)" class="option-card border-2 bg-white/50 p-4 rounded-xl">No, thanks</button>
+                         <button type="button" onclick="selectOption(this, 'filling', 'Nutella', 10.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Nutella</button>
+                         <button type="button" onclick="selectOption(this, 'filling', 'Biscoff', 10.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Biscoff</button>
+                         <button type="button" onclick="selectOption(this, 'filling', 'Cream Cheese', 8.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Cream Cheese</button>
+                         <button type="button" onclick="selectOption(this, 'filling', 'Salted Caramel', 8.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Salted Caramel</button>
+                         <button type="button" onclick="selectOption(this, 'filling', 'Berry Jam', 7.00)" class="option-card border-2 bg-white/50 p-4 rounded-xl">Berry Jam</button>
+                         <button type="button" onclick="selectOption(this, 'filling', 'None', 0)" class="option-card border-2 bg-white/50 p-4 rounded-xl">No, thanks</button>
                     </div>
                 </div>
 
@@ -376,14 +376,10 @@
         }
 
         // --- SELECTION & LOGIC ---
-        function selectOption(key, value, price) {
-            const parentStep = document.getElementById(`step-${key === 'filling' ? 'fillings' : key}`);
-            if (parentStep) {
-                parentStep.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
-                const currentEl = [...parentStep.querySelectorAll('.option-card')].find(el => el.textContent.includes(value));
-                if(currentEl) currentEl.classList.add('selected');
-            }
-
+        function selectOption(element, key, value, price) {
+            element.parentElement.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            
             orderDetails[key] = value;
             prices[key] = price;
             
@@ -392,12 +388,11 @@
             goToNextStep();
         }
 
-        function selectOccasion(occasion) {
+        function selectOccasion(element, occasion) {
+            element.parentElement.querySelectorAll('.option-card').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+
             orderDetails.occasion = occasion;
-            document.querySelectorAll('#step-occasion .option-card').forEach(el => el.classList.remove('selected'));
-            const currentEl = [...document.querySelectorAll('#step-occasion .option-card')].find(el => el.textContent.includes(occasion));
-            if (currentEl) currentEl.classList.add('selected');
-            
             getThemeIdeas();
         }
         
@@ -579,7 +574,7 @@
             const productType = orderDetails.type === 'Cupcakes' ? 'a batch of cupcakes' : 'a custom cake';
 
             let prompt = `Generate a high-quality, photorealistic image of ${productType}, presented in a professional food photography style on a clean, simple background (like a marble countertop or a cake stand).\n\n`;
-            if (orderDetails.inspiration_image_url) { // This field is no longer used, but keeping logic just in case
+            if (orderDetails.inspiration_image_url) { 
                 prompt += `CRITICAL INSTRUCTION: This design is heavily inspired by an image provided by the customer. The generated image should VERY CLOSELY resemble the style, colors, decorations, and overall theme of the inspiration image, while integrating the specific details listed below.\n\n`;
             }
             prompt += `--- CORE DETAILS ---\nProduct: ${orderDetails.type}\n`;
@@ -691,89 +686,46 @@
             }
         }
 
-        // --- ENQUIRY (This function in your index.html needs to be updated) ---
-async function sendEnquiry() {
-    if (document.querySelectorAll('.generated-image-option').length > 0 && selected_generated_image_index === null) {
-        alert("Please select your favorite preview image before sending the enquiry.");
-        return;
-    }
+        // --- ENQUIRY ---
+        async function sendEnquiry() {
+            if (document.querySelectorAll('.generated-image-option').length > 0 && selected_generated_image_index === null) {
+                alert("Please select your favorite preview image before sending the enquiry.");
+                return;
+            }
 
-    const enquiryButton = document.getElementById('send-enquiry-button');
-    enquiryButton.disabled = true;
-    enquiryButton.innerHTML = 'Compressing & Sending...';
+            const enquiryButton = document.getElementById('send-enquiry-button');
+            enquiryButton.disabled = true;
+            enquiryButton.innerHTML = 'Compressing Image & Sending...';
 
-    if (selected_generated_image_index !== null) {
-        const selectedImgElement = document.getElementById('generated-image-grid').children[selected_generated_image_index];
-        const compressedData = await compressImage(selectedImgElement.src);
-        orderDetails.selected_ai_preview_data = compressedData;
-    }
-    
-    enquiryButton.innerHTML = 'Sending Enquiry...';
-    
-    // ⬇️ THIS IS THE IMPORTANT CHANGE ⬇️
-    // We now send the data to our own secure API endpoint.
-    const secureApiEndpoint = '/api/send-enquiry'; 
+            if (selected_generated_image_index !== null) {
+                const selectedImgElement = document.getElementById('generated-image-grid').children[selected_generated_image_index];
+                try {
+                    const compressedData = await compressImage(selectedImgElement.src);
+                    orderDetails.selected_ai_preview_data = compressedData;
+                } catch(error) {
+                    alert('An error occurred while preparing your selected image. Please try again.');
+                    enquiryButton.disabled = false;
+                    enquiryButton.innerHTML = '📧 Send Enquiry';
+                    return;
+                }
+            }
+            
+            enquiryButton.innerHTML = 'Sending Enquiry...';
+            const webhookUrl = 'https://connect.pabbly.com/workflow/sendwebhookfiledata/IjU3NjYwNTY1MDYzNDA0MzM1MjZhIg_3D_3D_pc/IjU3NjYwNTZiMDYzMjA0M2M1MjY0NTUzMzUxM2Ii_pc';
+            const totalPrice = document.getElementById('total-price').innerText;
+            const dataToSend = { ...orderDetails, estimatedPrice: totalPrice };
 
-    const totalPrice = document.getElementById('total-price').innerText;
-    // We no longer need the inspiration_image_url field, only the compressed data
-    const { inspiration_image_url, ...dataToSend } = { ...orderDetails, estimatedPrice: totalPrice };
-
-
-    try {
-        const response = await fetch(secureApiEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataToSend)
-        });
-
-        if (response.ok) {
-            document.getElementById('enquiry-section').style.display = 'none';
-            document.getElementById('enquiry-confirmation').innerHTML = `<p class="font-semibold">Thank You!</p><p>Your enquiry has been sent successfully. We will be in touch shortly!</p>`;
-            document.getElementById('enquiry-confirmation').style.display = 'block';
-        } else {
-            throw new Error('Failed to send enquiry.');
+            try {
+                await fetch(webhookUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(dataToSend) });
+                document.getElementById('enquiry-section').style.display = 'none';
+                document.getElementById('enquiry-confirmation').innerHTML = `<p class="font-semibold">Thank You!</p><p>Your enquiry has been sent successfully. We will be in touch shortly!</p>`;
+                document.getElementById('enquiry-confirmation').style.display = 'block';
+            } catch (error) {
+                alert('Sorry, there was a problem sending your enquiry. Please try again or contact us directly.');
+                enquiryButton.disabled = false;
+                enquiryButton.innerHTML = '📧 Send Enquiry';
+            }
         }
-
-    } catch (error) {
-        alert('Sorry, there was a problem sending your enquiry. Please try again or contact us directly.');
-        enquiryButton.disabled = false;
-        enquiryButton.innerHTML = '📧 Send Enquiry';
-    }
-}
-    
-    enquiryButton.innerHTML = 'Sending Enquiry...';
-    
-    // ⬇️ THIS IS THE IMPORTANT CHANGE ⬇️
-    // The new, secure URL for your own backend endpoint
-    const secureApiEndpoint = '/api/send-enquiry'; 
-    const totalPrice = document.getElementById('total-price').innerText;
-    const dataToSend = { ...orderDetails, estimatedPrice: totalPrice };
-
-    try {
-        // Send the data to YOUR backend, not directly to Pabbly
-        const response = await fetch(secureApiEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(dataToSend)
-        });
-
-        if (response.ok) {
-            document.getElementById('enquiry-section').style.display = 'none';
-            document.getElementById('enquiry-confirmation').innerHTML = `<p class="font-semibold">Thank You!</p><p>Your enquiry has been sent successfully. We will be in touch shortly!</p>`;
-            document.getElementById('enquiry-confirmation').style.display = 'block';
-        } else {
-            // If your backend returns an error, show it to the user
-            throw new Error('Failed to send enquiry.');
-        }
-
-    } catch (error) {
-        alert('Sorry, there was a problem sending your enquiry. Please try again or contact us directly.');
-        enquiryButton.disabled = false;
-        enquiryButton.innerHTML = '📧 Send Enquiry';
-    }
-}
 
         // --- RESET ---
         function resetCalculator() {
