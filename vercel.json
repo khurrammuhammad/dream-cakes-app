@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/send-enquiry.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/send-enquiry", "dest": "/api/send-enquiry.js" }
+  ]
+}
