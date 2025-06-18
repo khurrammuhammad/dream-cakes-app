@@ -1,49 +1,27 @@
-// --- ENQUIRY (Updated Version) ---
-async function sendEnquiry() {
-    if (document.querySelectorAll('.generated-image-option').length > 0 && selected_generated_image_index === null) {
-        alert("Please select your favorite preview image before sending the enquiry.");
-        return;
+// File: /api/send-enquiry.js
+export default async function handler(request, response) {
+  if (request.method !== 'POST') {
+    return response.status(405).json({ message: 'Method Not Allowed' });
+  }
+  const orderData = request.body;
+  const PABBLY_WEBHOOK_URL = process.env.PABBLY_WEBHOOK_URL;
+  if (!PABBLY_WEBHOOK_URL) {
+    console.error("Webhook URL is not configured.");
+    return response.status(500).json({ message: 'Server configuration error.' });
+  }
+  try {
+    const pabblyResponse = await fetch(PABBLY_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderData),
+    });
+    if (!pabblyResponse.ok) {
+        console.error('Pabbly webhook failed:', await pabblyResponse.text());
+        throw new Error('Failed to send enquiry to the webhook.');
     }
-
-    const enquiryButton = document.getElementById('send-enquiry-button');
-    enquiryButton.disabled = true;
-    enquiryButton.innerHTML = 'Compressing & Sending...';
-
-    if (selected_generated_image_index !== null) {
-        const selectedImgElement = document.getElementById('generated-image-grid').children[selected_generated_image_index];
-        const compressedData = await compressImage(selectedImgElement.src);
-        orderDetails.selected_ai_preview_data = compressedData;
-    }
-    
-    enquiryButton.innerHTML = 'Sending Enquiry...';
-    
-    // ⬇️ THIS IS THE IMPORTANT CHANGE ⬇️
-    // We now send the data to our own secure API endpoint.
-    const secureApiEndpoint = '/api/send-enquiry'; 
-
-    const totalPrice = document.getElementById('total-price').innerText;
-    // We no longer need the inspiration_image_url field, only the compressed data
-    const { inspiration_image_url, ...dataToSend } = { ...orderDetails, estimatedPrice: totalPrice };
-
-
-    try {
-        const response = await fetch(secureApiEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataToSend)
-        });
-
-        if (response.ok) {
-            document.getElementById('enquiry-section').style.display = 'none';
-            document.getElementById('enquiry-confirmation').innerHTML = `<p class="font-semibold">Thank You!</p><p>Your enquiry has been sent successfully. We will be in touch shortly!</p>`;
-            document.getElementById('enquiry-confirmation').style.display = 'block';
-        } else {
-            throw new Error('Failed to send enquiry.');
-        }
-
-    } catch (error) {
-        alert('Sorry, there was a problem sending your enquiry. Please try again or contact us directly.');
-        enquiryButton.disabled = false;
-        enquiryButton.innerHTML = '📧 Send Enquiry';
-    }
+    return response.status(200).json({ message: 'Enquiry sent successfully!' });
+  } catch (error) {
+    console.error("Error forwarding to Pabbly:", error.message);
+    return response.status(500).json({ message: 'An internal error occurred.' });
+  }
 }
