@@ -1,7 +1,7 @@
 // File: /api/send-enquiry.js
 
 export default async function handler(request, response) {
-  // Only allow POST requests
+  // Only allow POST requests for security
   if (request.method !== 'POST') {
     return response.status(405).json({ message: 'Method Not Allowed' });
   }
@@ -9,12 +9,12 @@ export default async function handler(request, response) {
   // Get the cake order data sent from the front-end form
   const orderData = request.body;
 
-  // IMPORTANT: Your secret Pabbly webhook URL is stored securely here
-  // You will set this in your hosting provider's "Environment Variables" settings
+  // Your secret Pabbly webhook URL is retrieved securely from environment variables
   const PABBLY_WEBHOOK_URL = process.env.PABBLY_WEBHOOK_URL;
 
   if (!PABBLY_WEBHOOK_URL) {
-    return response.status(500).json({ message: 'Server configuration error' });
+    console.error("Webhook URL is not configured.");
+    return response.status(500).json({ message: 'Server configuration error.' });
   }
 
   try {
@@ -27,9 +27,8 @@ export default async function handler(request, response) {
       body: JSON.stringify(orderData),
     });
 
-    // Check if Pabbly accepted the data
     if (!pabblyResponse.ok) {
-        // You can log the error here on the server for debugging
+        // Log the error on the server for your debugging
         console.error('Pabbly webhook failed:', await pabblyResponse.text());
         throw new Error('Failed to send enquiry to the webhook.');
     }
@@ -38,7 +37,7 @@ export default async function handler(request, response) {
     return response.status(200).json({ message: 'Enquiry sent successfully!' });
 
   } catch (error) {
-    console.error(error);
+    console.error("Error forwarding to Pabbly:", error.message);
     return response.status(500).json({ message: 'An internal error occurred.' });
   }
 }
