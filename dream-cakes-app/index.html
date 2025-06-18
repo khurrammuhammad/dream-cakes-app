@@ -700,25 +700,46 @@ async function sendEnquiry() {
 
     const enquiryButton = document.getElementById('send-enquiry-button');
     enquiryButton.disabled = true;
-    enquiryButton.innerHTML = 'Uploading Image & Sending...';
+    enquiryButton.innerHTML = 'Compressing & Sending...';
 
     if (selected_generated_image_index !== null) {
         const selectedImgElement = document.getElementById('generated-image-grid').children[selected_generated_image_index];
-        const base64Data = selectedImgElement.src.split(',')[1];
-        try {
-            const publicUrl = await uploadImageToImgur(base64Data);
-            if (publicUrl) {
-                orderDetails.selected_ai_preview_url = publicUrl;
-            } else {
-                throw new Error("Imgur upload returned null.");
-            }
-        } catch(error) {
-            alert('An error occurred while preparing your selected image. Please try again.');
-            enquiryButton.disabled = false;
-            enquiryButton.innerHTML = '📧 Send Enquiry';
-            return;
-        }
+        const compressedData = await compressImage(selectedImgElement.src);
+        orderDetails.selected_ai_preview_data = compressedData;
     }
+    
+    enquiryButton.innerHTML = 'Sending Enquiry...';
+    
+    // ⬇️ THIS IS THE IMPORTANT CHANGE ⬇️
+    // We now send the data to our own secure API endpoint.
+    const secureApiEndpoint = '/api/send-enquiry'; 
+
+    const totalPrice = document.getElementById('total-price').innerText;
+    // We no longer need the inspiration_image_url field, only the compressed data
+    const { inspiration_image_url, ...dataToSend } = { ...orderDetails, estimatedPrice: totalPrice };
+
+
+    try {
+        const response = await fetch(secureApiEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataToSend)
+        });
+
+        if (response.ok) {
+            document.getElementById('enquiry-section').style.display = 'none';
+            document.getElementById('enquiry-confirmation').innerHTML = `<p class="font-semibold">Thank You!</p><p>Your enquiry has been sent successfully. We will be in touch shortly!</p>`;
+            document.getElementById('enquiry-confirmation').style.display = 'block';
+        } else {
+            throw new Error('Failed to send enquiry.');
+        }
+
+    } catch (error) {
+        alert('Sorry, there was a problem sending your enquiry. Please try again or contact us directly.');
+        enquiryButton.disabled = false;
+        enquiryButton.innerHTML = '📧 Send Enquiry';
+    }
+}
     
     enquiryButton.innerHTML = 'Sending Enquiry...';
     
